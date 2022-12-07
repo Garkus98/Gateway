@@ -1,0 +1,16 @@
+### Упрощенная отправка сообщений в телеграм (начиная с версии 20200915)
+
+1. Зарегистрировать своего бота можно у [@BotFather](https://t.me/BotFather). Во время регистрации будет выдан *token*.
+2. Узнать свой *ChatId* можно у бота [@userinfobot](https://t.me/userinfobot).
+
+*token* и *ChatId* достаточно написать 1 раз в `init.lua`, потом использовать только `telegram.send()` :
+
+
+```lua
+-- добавьте в init.lua
+telegram.settoken("5961....:AAHJP4...")
+telegram.setchat("5748.....")
+
+-- добавьте в любой lua скрипт где требуется оповещение
+telegram.send("Температура: " .. string.format("%.2f", zigbee.value(tostring(Event.ieeeAddr), "temperature")) .. "°C, Влажность: " .. string.format("%.2f",zigbee.value(tostring(Event.ieeeAddr), "humidity")) .. "%")
+```
